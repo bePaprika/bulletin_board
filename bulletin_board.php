@@ -29,7 +29,7 @@
         <form action="" method="post">
             <input type="num" name="dlow" placeholder="削除したい投稿ID">
             <input type="text" name="pass" placeholder="パスワード">
-            <input type="submit" name="submit"><br><br>
+            <input type="submit" name="delete" value="削除"><br><br>
         </form>
 
         <?php
@@ -39,12 +39,25 @@
             $password = 'パスワード';
             $pdo = new PDO($dsn, $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
 
+            //変数初期値
+            $name="";
+            $comm="";
+            $pass="";
+            $elow="";
+            $dlow="";
+            
             //POST受信
-            if($_POST["name"]!=""){$name = $_POST["name"];}
-            if($_POST["comm"]!=""){$name = $_POST["comm"];}
-            if($_POST["pass"]!=""){$name = $_POST["pass"];}
-            if($_POST["elow"]!=""){$name = $_POST["elow"];}
-            if($_POST["dlow"]!=""){$name = $_POST["dlow"];}
+            if (isset($_POST['submit'])){
+                if($_POST["name"]!=""){$name = $_POST["name"];}
+                if($_POST["comm"]!=""){$comm = $_POST["comm"];}
+                if($_POST["pass"]!=""){$pass = $_POST["pass"];}
+                if($_POST["elow"]!=""){$elow = $_POST["elow"];}
+            }
+
+            if (isset($_POST['delete'])){
+                if($_POST["dlow"]!=""){$dlow = $_POST["dlow"];}
+                if($_POST["pass"]!=""){$pass = $_POST["pass"];}
+            }
 
             //Postsを保管するテーブルを作成
             $sql = "CREATE TABLE IF NOT EXISTS Posts"
