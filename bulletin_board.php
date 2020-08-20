@@ -40,11 +40,11 @@
             $pdo = new PDO($dsn, $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
 
             //POST受信
-            $name = $_POST["name"];
-            $comm = $_POST["comm"];
-            $pass = $_POST["pass"];
-            $elow = $_POST["elow"];
-            $dlow = $_POST["dlow"];
+            if($_POST["name"]!=""){$name = $_POST["name"];}
+            if($_POST["comm"]!=""){$name = $_POST["comm"];}
+            if($_POST["pass"]!=""){$name = $_POST["pass"];}
+            if($_POST["elow"]!=""){$name = $_POST["elow"];}
+            if($_POST["dlow"]!=""){$name = $_POST["dlow"];}
 
             //Postsを保管するテーブルを作成
             $sql = "CREATE TABLE IF NOT EXISTS Posts"
